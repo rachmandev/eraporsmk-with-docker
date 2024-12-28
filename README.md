@@ -1,7 +1,7 @@
 <p align="center"><img src="http://app.erapor-smk.net/logo.png" width="300"></p>
 
 ## Server Requirements
-OS Windows, Linux dan MacOs Terinstall Docker Desktop
+OS Windows, Linux dan MacOs Terinstall Docker Desktop <br>
 OS Linux Install Docker Engine Lewat APT Repository (recommended)
 - docker-ce 
 - docker-ce-cli 
@@ -12,7 +12,9 @@ OS Linux Install Docker Engine Lewat APT Repository (recommended)
 ## Install Docker
 
 Install Docker dari link berikut :
+```bash
 https://docs.docker.com/engine/install/
+```
 
 
 ## Clone Repo ini dan erapor7
@@ -26,8 +28,8 @@ git clone https://github.com/rachmandev/eraporsmk-with-docker.git
 ```bash
 git clone https://github.com/eraporsmk/erapor7.git src
 ```
-Silahkan Clone erapor7 dari repo di atas dan isi file dan folder replace ke folder src 
-(Jika Ada perubahan di repo erapor7)
+Silahkan Clone erapor7 dari repo di atas setelah diclone isi file dan folder erapor7 direplace ke folder src
+
 
 ## Membuat file .env di Folder Src
 ```bash
@@ -43,6 +45,7 @@ DB_DATABASE=eraporsmk
 DB_USERNAME=postgres
 DB_PASSWORD=eraporsmk
 ```
+
 
 ## Membuat Container 
 
@@ -71,10 +74,11 @@ php artisan migrate
 php artisan db:seed
 ```
 
-- Update Versi Aplikasi Jika Erapor Naik Versi (Saat ini Versi 7.0.6)
+- Update Versi Aplikasi
 ```bash
 php artisan erapor:update
 ```
+
 
 ## Test erapor
 
@@ -83,5 +87,3 @@ php artisan erapor:update
 ```bash
 http://localhost:8030
 ```
-
-
