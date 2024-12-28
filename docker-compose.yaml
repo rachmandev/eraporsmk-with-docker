@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  webserver:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: eraporsmk
+    ports:
+      - "8030:80"
+    # depends_on:
+    #   - database
+    networks:
+      - erapor
+    restart: always
+
+  # database:
+  #   image: postgres:17
+  #   container_name: db-eraporsmk
+  #   environment:
+  #     POSTGRES_USER: postgres         # Username untuk PostgreSQL
+  #     POSTGRES_PASSWORD: eraporsmk # Password untuk user
+  #     POSTGRES_DB: eraporsmk       # Nama database yang dibuat saat startup
+  #   ports:
+  #     - "5432:5432"                 # Port PostgreSQL
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - erapor
+  #   restart: always
+
+networks:
+  erapor:
+
+volumes:
+  postgres_data:
