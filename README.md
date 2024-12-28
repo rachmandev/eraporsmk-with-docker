@@ -1,7 +1,7 @@
 <p align="center"><img src="http://app.erapor-smk.net/logo.png" width="300"></p>
 
 ## Server Requirements
-OS Windows, Linux dan MacOs Terinstall Docker Desktop
+OS Windows, Linux dan MacOs Terinstall Docker Desktop <br>
 OS Linux Install Docker Engine Lewat APT Repository (recommended)
 - docker-ce 
 - docker-ce-cli 
