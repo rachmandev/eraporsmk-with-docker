@@ -3,11 +3,11 @@
 ## Server Requirements
 OS Windows, Linux dan MacOs Terinstall Docker Desktop
 OS Linux Install Docker Engine Lewat APT Repository (recommended)
-    - docker-ce 
-    - docker-ce-cli 
-    - containerd.io 
-    - docker-buildx-plugin 
-    - docker-compose-plugin
+- docker-ce 
+- docker-ce-cli 
+- containerd.io 
+- docker-buildx-plugin 
+- docker-compose-plugin
 
 ## Install Docker
 
