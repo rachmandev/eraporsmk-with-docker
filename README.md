@@ -37,15 +37,21 @@ cp .env.example .env
 nano .env
 ```
 
-- Koneksi Database Sesuaikan dengan yang ada di bawah
+- Koneksi Ke Database Sesuaikan dengan yang ada di bawah
 ```bash
-DB_HOST=db-eraporsmk
+DB_HOST=erapor_database
 DB_PORT=5432
 DB_DATABASE=eraporsmk
 DB_USERNAME=postgres
 DB_PASSWORD=eraporsmk
 ```
 
+- Koneksi Ke Redis
+```bash
+REDIS_HOST=erapor_redis
+REDIS_PASSWORD=eraporsmk
+REDIS_PORT=6379
+```
 
 ## Membuat Container 
 
