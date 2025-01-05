@@ -14,7 +14,7 @@ services:
     restart: always
   
   redis:
-    image: redis:latest
+    image: redis:alpine
     container_name: erapor_redis
     restart: always
     ports:
