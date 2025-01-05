@@ -4,7 +4,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: eraporsmk
+    container_name: erapor_app_webserver
     ports:
       - "8030:80"
     depends_on:
@@ -12,10 +12,24 @@ services:
     networks:
       - erapor
     restart: always
+  
+  redis:
+    image: redis:latest
+    container_name: erapor_redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    command: redis-server --save 20 1 --loglevel warning
+    environment:
+      - REDIS_PASSWORD=eraporsmk
+    networks:
+      - erapor
 
   database:
     image: postgres:17
-    container_name: db-eraporsmk
+    container_name: erapor_database
     environment:
       POSTGRES_USER: postgres      # Username untuk PostgreSQL
       POSTGRES_PASSWORD: eraporsmk # Password untuk user
@@ -33,3 +47,5 @@ networks:
 
 volumes:
   postgres_data:
+  redis_data:
+    driver: local
