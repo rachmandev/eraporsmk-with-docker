@@ -34,23 +34,6 @@ Silahkan Clone erapor7 dari repo di atas setelah diclone isi file dan folder era
 ## Membuat file .env di Folder Src
 ```bash
 cp .env.example .env
-nano .env
-```
-
-- Koneksi Ke Database Sesuaikan dengan yang ada di bawah
-```bash
-DB_HOST=erapor_database
-DB_PORT=5432
-DB_DATABASE=eraporsmk
-DB_USERNAME=postgres
-DB_PASSWORD=eraporsmk
-```
-
-- Koneksi Ke Redis
-```bash
-REDIS_HOST=erapor_redis
-REDIS_PASSWORD=eraporsmk
-REDIS_PORT=6379
 ```
 
 ## Membuat Container 
@@ -62,7 +45,7 @@ docker-compose up -d --build
 
 - Jika Container sudah berjalan, jalankan perintah ini
 ```bash
-docker exec -it eraporsmk bash
+docker exec -it eraporsmk_container bash
 ```
 
 - Kemudian Generate App Key
@@ -72,12 +55,7 @@ php artisan key:generate
 
 - Membuat struktur table dengan migration
 ```bash
-php artisan migrate
-```
-
-- Jalankan seeder
-```bash
-php artisan db:seed
+php artisan migrate --seed
 ```
 
 - Update Versi Aplikasi
@@ -88,8 +66,8 @@ php artisan erapor:update
 
 ## Test erapor
 
-- Buka Web Browser favorite anda kemudian copy url dibawah
+- Buka Web Browser favorite anda kemudian akses localhost
 
 ```bash
-http://localhost:8030
+http://localhost
 ```
