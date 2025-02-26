@@ -1,49 +1,71 @@
 version: '3.9'
 services:
-  webserver:
+  eraporsmk:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: erapor_app_webserver
-    ports:
-      - "8030:80"
-    depends_on:
-      - database
-    networks:
-      - erapor
+    container_name: eraporsmk_container
+    user: www-data
     restart: always
-  
+    networks:
+      - erapor-network
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_TIMEZONE=Asia/Jakarta
+      - APP_URL=http://localhost
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres_container
+      - DB_PORT=5432
+      - DB_DATABASE=eraporsmk
+      - DB_USERNAME=eraporsmk
+      - DB_PASSWORD=eraporsmk
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./src:/var/www/eraporsmk
+    depends_on:
+      - eraporsmk
+    networks:
+      - erapor-network
+    command: [ "/bin/sh", "-c", "nginx -g 'daemon off;'" ]
+
   redis:
     image: redis:alpine
-    container_name: erapor_redis
+    container_name: redis_container
     restart: always
-    ports:
-      - '6379:6379'
     volumes:
       - redis_data:/data
     command: redis-server --save 20 1 --loglevel warning
     environment:
       - REDIS_PASSWORD=eraporsmk
     networks:
-      - erapor
+      - erapor-network
 
   database:
     image: postgres:17
-    container_name: erapor_database
+    container_name: postgres_container
     environment:
-      POSTGRES_USER: postgres      # Username untuk PostgreSQL
-      POSTGRES_PASSWORD: eraporsmk # Password untuk user
-      POSTGRES_DB: eraporsmk       # Nama database yang dibuat saat startup
-    ports:
-      - "5432:5432"                # Port PostgreSQL
+      POSTGRES_USER: eraporsmk
+      POSTGRES_PASSWORD: eraporsmk
+      POSTGRES_DB: eraporsmk
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./backup:/backup
+      - ./init:/docker-entrypoint-initdb.d
     networks:
-      - erapor
+      - erapor-network
     restart: unless-stopped
 
 networks:
-  erapor:
+  erapor-network:
+
 
 volumes:
   postgres_data:
